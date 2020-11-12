@@ -4,11 +4,13 @@ package Datenbank;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class DB_Action implements DataModel {
 	
+	Map<String, String> userMap = new HashMap<String, String>();
 	 
 	public  DB_Action () {
 		//
@@ -42,6 +44,92 @@ public class DB_Action implements DataModel {
 	        }
 		}
 		return capitalCities;
+	}
+
+	@Override
+	public boolean createCustomer(String firstName, String lastName, String eMail) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Customer getCustomerByID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateCustomer(int id, String firstName, String lastName, String eMail) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean deleteCustomer(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public ArrayList<Customer> getAllCustomers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean hasAnyCustomers() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean createBicycle(String serialNo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Bicycle getBicycleByID(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateBicyle(int id, String serialNumber, String description) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean deleteBicycle(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void loadData() {
+		// TODO Auto-generated method stub
+		
+		
+		
+	}
+
+	@Override
+	public void saveData() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean connectBicycleWithCustomer(int idBicycle, int idUser) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean disconnectBicycle(int idBicycle) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

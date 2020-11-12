@@ -10,7 +10,7 @@ public class test {
     	
     	
     	DataModel db = new DB_Action();
-    	GUI gui = new GUI();
+    	GUI gui = new GUI(db);
     	
     	//DB_Connection db_connection = new DB_Connection("localhost", "oszimt", "oszimt", "oszimt");
         //ResultSet resultSet;
