@@ -2,6 +2,7 @@ package Datenbank;
 
 public class Customer {
 	String firstName, lastName, emailAddress;
+	int id;
 
 	public String getFullName() {
 		return getLastName() + ", " + getFirstName();
@@ -31,11 +32,20 @@ public class Customer {
 		this.emailAddress = emailAddress;
 	}
 
-	public Customer(String firstName, String lastName, String emailAddress) {
+	public Customer(int id, String firstName, String lastName, String emailAddress) {
 		super();
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.emailAddress = emailAddress;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }

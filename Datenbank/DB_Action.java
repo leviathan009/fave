@@ -10,10 +10,10 @@ import java.util.Map;
 
 public class DB_Action implements DataModel {
 	
-	Map<String, String> userMap = new HashMap<String, String>();
+	HashMap<Integer, Customer> userMap = new HashMap<Integer, Customer>();
 	 
 	public  DB_Action () {
-		//
+		loadData();
 	}
 	
 	public Map<String, String> getUser (Integer userid) {
@@ -47,15 +47,14 @@ public class DB_Action implements DataModel {
 	}
 
 	@Override
-	public boolean createCustomer(String firstName, String lastName, String eMail) {
+	public boolean createCustomer(int id, String firstName, String lastName, String eMail) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public Customer getCustomerByID() {
-		// TODO Auto-generated method stub
-		return null;
+	public Customer getCustomerByID(int id) {
+		return userMap.get(id);
 	}
 
 	@Override
@@ -71,9 +70,8 @@ public class DB_Action implements DataModel {
 	}
 
 	@Override
-	public ArrayList<Customer> getAllCustomers() {
-		// TODO Auto-generated method stub
-		return null;
+	public HashMap<Integer, Customer> getAllCustomers() {
+		return userMap;
 	}
 
 	@Override
@@ -109,8 +107,13 @@ public class DB_Action implements DataModel {
 	@Override
 	public void loadData() {
 		// TODO Auto-generated method stub
-		
-		
+		userMap = new HashMap<Integer, Customer>();
+		// TODO Mock Data
+		Customer c;
+		for(int i=0;i<50;i++) {
+			c = new Customer(i, "firstName"+i, "lastName", "foo@bar.abc");
+			userMap.put(i, c);
+		}
 		
 	}
 

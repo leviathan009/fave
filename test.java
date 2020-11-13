@@ -1,6 +1,8 @@
 
 //import Datenbank;
 import Datenbank.*;
+import fave.GUI;
+
 import java.util.HashMap;
 import java.util.Map;
 

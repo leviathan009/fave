@@ -1,19 +1,20 @@
 package Datenbank;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface DataModel {
 	//Customer
 	//Create
-	public boolean createCustomer(String firstName, String lastName, String eMail);
+	public boolean createCustomer(int id, String firstName, String lastName, String eMail);
 	//Read
-	public Customer getCustomerByID();
+	public Customer getCustomerByID(int id);
 	//Update
 	public void updateCustomer(int id, String firstName, String lastName, String eMail);
 	//Delete
 	public boolean deleteCustomer(int id);
 	
 	//Misc.
-	public ArrayList<Customer> getAllCustomers();
+	public HashMap<Integer, Customer> getAllCustomers();
 	public boolean hasAnyCustomers();
 	
 	//Bicycle
