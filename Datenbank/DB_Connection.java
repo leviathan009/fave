@@ -37,7 +37,7 @@ public class DB_Connection {
         }
     }
     	
-    	
+    
     
     
     //Datenbank-Verbindung öffnen
@@ -65,9 +65,9 @@ public class DB_Connection {
         ResultSet resultSet = null;
         
         try {
-            sqlStatement = dbConnection.createStatement();   //Statement-Objekt bereitstellen
-            resultSet = sqlStatement.executeQuery(pSql);     //Statement-Objekt führt die Abfrage aus und gibt ein entsprechendes ResultSet zurück.
-            this.resultSet = resultSet;                      //Um das ResultSet-Objekt über closeConnection() schließen zu können, wird dem Attribut resultSet ein entsprechender Verweis auf das Objekt zugewiesen.
+            sqlStatement = dbConnection.createStatement();   
+            resultSet = sqlStatement.executeQuery(pSql);     
+            this.resultSet = resultSet;                      
             System.out.println("Datenbank-Abfrage durchgeführt...");
         }
         catch(SQLException e){
@@ -85,8 +85,8 @@ public class DB_Connection {
         boolean executed = false;
         
         try{
-            sqlStatement = dbConnection.createStatement();   //Statement-Objekt bereitstellen
-            sqlStatement.executeUpdate(pSql);               //Statement-Objekt führt die Anfügeabfrage aus.
+            sqlStatement = dbConnection.createStatement();   
+            sqlStatement.executeUpdate(pSql);               
             executed = true;
             System.out.println("Datenbank-Aktualisierung durchgeführt...");
         }

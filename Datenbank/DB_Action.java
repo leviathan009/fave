@@ -11,40 +11,16 @@ import java.util.Map;
 public class DB_Action implements DataModel {
 	
 	HashMap<Integer, Customer> userMap = new HashMap<Integer, Customer>();
-	 
+	HashMap<Integer, Bicycle> bicycleMap = new HashMap<Integer, Bicycle>();
+	HashMap<Integer, Customer> userBicycleMap = new HashMap<Integer, Customer>();
+
+	DB_Connection db_connection = new DB_Connection("localhost", "oszimt", "oszimt", "oszimt");
+
+	
 	public  DB_Action () {
 		loadData();
 	}
 	
-	public Map<String, String> getUser (Integer userid) {
-		
-		Map<String, String> capitalCities = new HashMap<String, String>();
-        	
-		
-    	DB_Connection db_connection = new DB_Connection("localhost", "oszimt", "oszimt", "oszimt");
-		ResultSet resultSet;
-		//userid = Integer.parseInt(userid);
-		if (userid > 0) {
-	        if(db_connection.openConnection()) {
-	            resultSet = db_connection.executeQuery("SELECT * FROM user WHERE userid='"+userid+"';");
-	            try {
-	                if(resultSet!=null && resultSet.next()) {
-	                  //  System.out.println( resultSet.getString("menu"));
-	                	capitalCities.put("firstname", resultSet.getString("firstname"));
-	                	capitalCities.put("lastname", resultSet.getString("lastname"));
-	                	capitalCities.put("email_adrese", resultSet.getString("email_adrese"));
-	            	}
-	            }
-	            catch (SQLException e) {
-	                System.out.println("Fehler beim DB-Zugriff!" + e.toString());
-	            }
-	            finally { 
-	            	System.out.println("finsch");
-	            }
-	        }
-		}
-		return capitalCities;
-	}
 
 	@Override
 	public boolean createCustomer(int id, String firstName, String lastName, String eMail) {
@@ -66,7 +42,10 @@ public class DB_Action implements DataModel {
 	@Override
 	public boolean deleteCustomer(int id) {
 		// TODO Auto-generated method stub
-		return false;
+		String sql = "DELETE FROM user WHERE userid='"+id+"';";
+		
+		return db_connection.executeUpdate(sql);
+
 	}
 
 	@Override
@@ -83,7 +62,10 @@ public class DB_Action implements DataModel {
 	@Override
 	public boolean createBicycle(String serialNo) {
 		// TODO Auto-generated method stub
-		return false;
+		String sql = "INSERT INTO user('firstname', 'lastname', 'email_address') VALUES ();";
+		
+		return db_connection.executeUpdate(sql);
+		
 	}
 
 	@Override
@@ -101,19 +83,56 @@ public class DB_Action implements DataModel {
 	@Override
 	public boolean deleteBicycle(int id) {
 		// TODO Auto-generated method stub
-		return false;
+		String sql = "DELETE FROM bicycle WHERE bicycleid='"+id+"';";
+		return db_connection.executeUpdate(sql);
+		
 	}
 
 	@Override
 	public void loadData() {
 		// TODO Auto-generated method stub
 		userMap = new HashMap<Integer, Customer>();
+		
+		
 		// TODO Mock Data
-		Customer c;
-		for(int i=0;i<50;i++) {
-			c = new Customer(i, "firstName"+i, "lastName", "foo@bar.abc");
-			userMap.put(i, c);
-		}
+		Customer user_arr;
+
+		
+		
+		ResultSet userResult;
+		ResultSet bicycleResult;
+		ResultSet userBicycleResult;
+
+    	
+		
+    	if( db_connection.openConnection() ) {
+    		userResult = db_connection.executeQuery("SELECT * FROM user;");
+    		bicycleResult = db_connection.executeQuery("SELECT * FROM bicycle;");
+    		//userBicycleResult = db_connection.executeQuery("SELECT * FROM user;");
+    		
+            try{
+                if(userResult!=null) {
+                    while(userResult.next()) {
+                    	userMap.put(Integer.parseInt(userResult.getString("userid")), new Customer(Integer.parseInt(userResult.getString("userid")), userResult.getString("firstname"), userResult.getString("lastname"), userResult.getString("email_address")));
+                    }
+                }
+                
+                if(bicycleResult!=null) {
+                    while(bicycleResult.next()) {
+                    	bicycleMap.put(Integer.parseInt(bicycleResult.getString("bicycleid")), new Bicycle(Integer.parseInt(bicycleResult.getString("bicycleid")), Integer.parseInt(bicycleResult.getString("userid")), bicycleResult.getString("serial_nr")));
+                    }
+                }
+                
+                //if(userBicycleResult!=null) {
+                    //while(userBicycleResult.next()) {
+                    	//userMap.put(Integer.parseInt(userBicycleResult.getString("userid")), new Customer(Integer.parseInt(userBicycleResult.getString("userid")), userBicycleResult.getString("firstname"), userBicycleResult.getString("lastname"), userBicycleResult.getString("email_address")));
+                    //}
+                //}
+            }
+            catch (SQLException e) {
+    			e.printStackTrace();
+    		}
+        }
 		
 	}
 
