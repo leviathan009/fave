@@ -1,7 +1,4 @@
 import java.awt.BorderLayout;
-
-import Datenbank.*;
-
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -12,17 +9,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+
+import Datenbank.Customer;
+import Datenbank.DataModel;
 
 public class GUI {
 	private JFrame mainFrame;
+	private DefaultListModel listModel;
+	private DataModel dataModel;
 	
 	public GUI(DataModel dm) {
+		dataModel = dm;
 		
 		//** North
 		JPanel northPanel = new JPanel(new GridBagLayout());
@@ -42,8 +48,12 @@ public class GUI {
 		searchPanel.add(searchTF);
 		
 		//List
-		JList list = new JList();
-		list.setPreferredSize(new Dimension(400,200));
+		listModel = new DefaultListModel();
+		JList list = new JList(listModel);
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		JScrollPane jsp = new JScrollPane();
+		jsp.getViewport().setView(list);
+		jsp.setPreferredSize(new Dimension(400,200));
 		
 		//Buttons
 		JPanel buttonPanel = new JPanel();
@@ -73,7 +83,7 @@ public class GUI {
 		gbc.insets = new Insets(10,10,10,10);
 		gbc.weightx = 1;
 		gbc.gridy = 1;
-		centerPanel.add(list, gbc);
+		centerPanel.add(jsp, gbc);
 		gbc.gridy = 2;
 		centerPanel.add(buttonPanel, gbc);
 		gbc.gridy = 1;
@@ -91,6 +101,13 @@ public class GUI {
 		mainFrame.setResizable(false);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.setVisible(true);
+	}
+	
+	public void updateView() {
+		listModel.clear();
+		for(Customer c : dataModel.getAllCustomers()) {
+			listModel.addElement(c.getFullName());
+		}
 	}
 	
 	private class ReleaseListener implements ActionListener{
