@@ -1,38 +1,47 @@
 package Datenbank;
+import java.util.*;
 
 public class Bicycle {
-	int bicycleid, userid;
-	String serial_nr;
-		
-	public Bicycle(int bicycleid, int userid, String serial_nr) {
+	int bicycleID, deleted=0;
+	String serialNr;
+	UUID bicycleGuid;
+	
+	
+	
+	
+	
+	public Bicycle(int bicycleID, int deleted, String serialNr, UUID bicycleGuid) {
 		super();
-		this.bicycleid = bicycleid;
-		this.userid = userid;
-		this.serial_nr = serial_nr;
+		this.bicycleID = bicycleID;
+		this.deleted = deleted;
+		this.serialNr = serialNr;
+		this.bicycleGuid = bicycleGuid;
 	}
 	
-	public int getBicycleid() {
-		return bicycleid;
-	}
 	
-	public void setBicycleid(int bicycleid) {
-		this.bicycleid = bicycleid;
+	public int getBicycleID() {
+		return bicycleID;
 	}
-	
-	public int getUserid() {
-		return userid;
+	public void setBicycleID(int bicycleID) {
+		this.bicycleID = bicycleID;
 	}
-	
-	public void setUserid(int userid) {
-		this.userid = userid;
+	public int getDeleted() {
+		return deleted;
 	}
-	
-	public String getSerial_nr() {
-		return serial_nr;
+	public void setDeleted(int deleted) {
+		this.deleted = deleted;
 	}
-	
-	public void setSerial_nr(String serial_nr) {
-		this.serial_nr = serial_nr;
+	public String getSerialNr() {
+		return serialNr;
+	}
+	public void setSerialNr(String serialNr) {
+		this.serialNr = serialNr;
+	}
+	public UUID getBicycleGuid() {
+		return bicycleGuid;
+	}
+	public void setBicycleGuid(UUID bicycleGuid) {
+		this.bicycleGuid = bicycleGuid;
 	}
 	
 	

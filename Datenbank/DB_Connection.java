@@ -37,7 +37,7 @@ public class DB_Connection {
         }
     }
     	
-    
+   
     
     
     //Datenbank-Verbindung öffnen
