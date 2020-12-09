@@ -1,11 +1,7 @@
 package Datenbank;
 import java.util.*;
 public class Customer {
-<<<<<<< HEAD
-	String firstName, lastName, emailAddress;
-	int id;
-	UUID uid;
-=======
+
 	private UUID userGuid;
 	private String firstName, lastName, emailAddress;
 	private int userID, deleted=0;
@@ -47,7 +43,6 @@ public class Customer {
 	public void setUserGuid(UUID userGuid) {
 		this.userGuid = userGuid;
 	}
->>>>>>> b71957d1fecfd930882d07ce7b799f048cff45db
 
 	public String getFullName() {
 		return getLastName() + ", " + getFirstName();

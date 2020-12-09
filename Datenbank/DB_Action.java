@@ -23,7 +23,7 @@ public class DB_Action implements DataModel {
 	@Override
 	public boolean createCustomer(String firstName, String lastName, String eMail) {
 		// TODO Auto-generated method stub
-		UUID userGuid = NewGUID();
+		UUID userGuid = New GUID();
 		userMap.put(userGuid, new Costumer(userGuid, fistName, ));
 		return false;
 	}

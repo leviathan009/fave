@@ -17,7 +17,7 @@ public interface DataModel {
 	public HashMap<UUID, Customer> getAllCustomers();
 	public boolean hasAnyCustomers();
 	
-	//Bicycleu
+	//Bicycle
 	//Create
 	public boolean createBicycle(String serialNo);
 	//Read
@@ -33,4 +33,6 @@ public interface DataModel {
 	//Associations
 	public boolean connectBicycleWithCustomer(int idBicycle, int idUser);
 	public boolean disconnectBicycle(int idBicycle);
+	public HashMap<Bicycle, Customer> getConnectedEntities();
+	
 }

@@ -3,19 +3,16 @@ import java.util.*;
 
 public class Bicycle {
 	int bicycleID, deleted=0;
-	String serialNr;
+	String serialNr, label;
 	UUID bicycleGuid;
 	
-	
-	
-	
-	
-	public Bicycle(int bicycleID, int deleted, String serialNr, UUID bicycleGuid) {
+	public Bicycle(int bicycleID, int deleted, String serialNr, UUID bicycleGuid, String labelArg) {
 		super();
 		this.bicycleID = bicycleID;
 		this.deleted = deleted;
 		this.serialNr = serialNr;
 		this.bicycleGuid = bicycleGuid;
+		this.label = labelArg;
 	}
 	
 	
@@ -42,6 +39,16 @@ public class Bicycle {
 	}
 	public void setBicycleGuid(UUID bicycleGuid) {
 		this.bicycleGuid = bicycleGuid;
+	}
+
+
+	public String getLabel() {
+		return label;
+	}
+
+
+	public void setLabel(String label) {
+		this.label = label;
 	}
 	
 	
