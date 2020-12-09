@@ -3,6 +3,7 @@ package Datenbank;
 public class Customer {
 	String firstName, lastName, emailAddress;
 	int id;
+	UUID uid;
 
 	public String getFullName() {
 		return getLastName() + ", " + getFirstName();
