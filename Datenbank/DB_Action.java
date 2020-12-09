@@ -4,14 +4,12 @@ package Datenbank;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class DB_Action implements DataModel {
 	
-	HashMap<Integer, Customer> userMap = new HashMap<Integer, Customer>();
-	HashMap<Integer, Bicycle> bicycleMap = new HashMap<Integer, Bicycle>();
+	HashMap<UUID, Customer> userMap = new HashMap<UUID, Customer>();
+	HashMap<UUID, Bicycle> bicycleMap = new HashMap<UUID, Bicycle>();
 	HashMap<Integer, Customer> userBicycleMap = new HashMap<Integer, Customer>();
 
 	DB_Connection db_connection = new DB_Connection("localhost", "oszimt", "oszimt", "oszimt");
@@ -23,8 +21,10 @@ public class DB_Action implements DataModel {
 	
 
 	@Override
-	public boolean createCustomer(int id, String firstName, String lastName, String eMail) {
+	public boolean createCustomer(String firstName, String lastName, String eMail) {
 		// TODO Auto-generated method stub
+		UUID userGuid = NewGUID();
+		userMap.put(userGuid, new Costumer(userGuid, fistName, ));
 		return false;
 	}
 
@@ -49,7 +49,7 @@ public class DB_Action implements DataModel {
 	}
 
 	@Override
-	public HashMap<Integer, Customer> getAllCustomers() {
+	public HashMap<UUID, Customer> getAllCustomers() {
 		return userMap;
 	}
 
@@ -58,11 +58,11 @@ public class DB_Action implements DataModel {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	
 	@Override
 	public boolean createBicycle(String serialNo) {
 		// TODO Auto-generated method stub
-		String sql = "INSERT INTO user('firstname', 'lastname', 'email_address') VALUES ();";
+		String sql = "INSERT INTO user('firstname', 'lastname', 'email_address', 'lastupdate') VALUES ();";
 		
 		return db_connection.executeUpdate(sql);
 		
@@ -91,7 +91,7 @@ public class DB_Action implements DataModel {
 	@Override
 	public void loadData() {
 		// TODO Auto-generated method stub
-		userMap = new HashMap<Integer, Customer>();
+		userMap = new HashMap<UUID, Customer>();
 		
 		
 		// TODO Mock Data
@@ -106,14 +106,14 @@ public class DB_Action implements DataModel {
     	
 		
     	if( db_connection.openConnection() ) {
-    		userResult = db_connection.executeQuery("SELECT * FROM user;");
+    		userResult = db_connection.executeQuery("SELECT * FROM user WHERE deleted=0;");
     		bicycleResult = db_connection.executeQuery("SELECT * FROM bicycle;");
     		//userBicycleResult = db_connection.executeQuery("SELECT * FROM user;");
     		
             try{
                 if(userResult!=null) {
                     while(userResult.next()) {
-                    	userMap.put(Integer.parseInt(userResult.getString("userid")), new Customer(Integer.parseInt(userResult.getString("userid")), userResult.getString("firstname"), userResult.getString("lastname"), userResult.getString("email_address")));
+                    	userMap.put(UUID.fromString(userResult.getString("user_guid")), new Customer(UUID.fromString(userResult.getString("user_guid")), Integer.parseInt(userResult.getString("userid")), userResult.getString("firstname"), userResult.getString("lastname"), userResult.getString("email_address"),Integer.parseInt(userResult.getString("deleted"))));
                     }
                 }
                 
@@ -133,12 +133,27 @@ public class DB_Action implements DataModel {
     			e.printStackTrace();
     		}
         }
+    	
+    	// TODO db connenction beenden
 		
 	}
 
 	@Override
 	public void saveData() {
 		// TODO Auto-generated method stub
+		ResultSet userResult;
+		
+		for (UUID key: getAllCustomers().keySet()) {
+			userResult = db_connection.executeQuery("SELECT * FROM user WHERE user_guid='"+key+"';");
+			if (userResult!=null) {
+				String sql = "UPDATE FROM user SET fistname=.... ;";
+				db_connection.executeUpdate(sql);
+			} else {
+				String sql = "INSERT INTO user fistname=.... ;";
+				db_connection.executeUpdate(sql);
+			}
+			
+		}
 		
 	}
 

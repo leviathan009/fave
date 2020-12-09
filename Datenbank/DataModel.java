@@ -1,6 +1,6 @@
 package Datenbank;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 public interface DataModel {
 	//Customer
@@ -14,10 +14,10 @@ public interface DataModel {
 	public boolean deleteCustomer(int id);
 	
 	//Misc.
-	public HashMap<Integer, Customer> getAllCustomers();
+	public HashMap<UUID, Customer> getAllCustomers();
 	public boolean hasAnyCustomers();
 	
-	//Bicycle
+	//Bicycleu
 	//Create
 	public boolean createBicycle(String serialNo);
 	//Read
