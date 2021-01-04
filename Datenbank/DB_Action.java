@@ -18,8 +18,8 @@ public class DB_Action implements DataModel {
 	public  DB_Action () {
 		loadData();
 		//System.out.println(userBicycleMap);
-		createCustomer("nana", "lolo", "nana@lolo.de");
-		saveData();
+		/createCustomer("nana", "lolo", "nana@lolo.de");
+		//saveData();
 	}
 	
 
