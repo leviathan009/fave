@@ -12,7 +12,7 @@ public class DB_Action implements DataModel {
 	HashMap<UUID, Bicycle> bicycleMap = new HashMap<UUID, Bicycle>();
 	HashMap<Integer, Customer> userBicycleMap = new HashMap<Integer, Customer>();
 
-	DB_Connection db_connection = new DB_Connection("localhost", "oszimt", "oszimt", "oszimt");
+	DB_Connection db_connection = new DB_Connection("192.168.1.57", "oszimt", "oszimt", "oszimt");
 
 	
 	public  DB_Action () {
@@ -23,8 +23,8 @@ public class DB_Action implements DataModel {
 	@Override
 	public boolean createCustomer(String firstName, String lastName, String eMail) {
 		// TODO Auto-generated method stub
-		UUID userGuid = New GUID();
-		userMap.put(userGuid, new Costumer(userGuid, fistName, ));
+		UUID userGuid = UUID.randomUUID();
+		userMap.put(userGuid, new Customer(userGuid, firstName, lastName, eMail, 0));
 		return false;
 	}
 
@@ -113,13 +113,15 @@ public class DB_Action implements DataModel {
             try{
                 if(userResult!=null) {
                     while(userResult.next()) {
-                    	userMap.put(UUID.fromString(userResult.getString("user_guid")), new Customer(UUID.fromString(userResult.getString("user_guid")), Integer.parseInt(userResult.getString("userid")), userResult.getString("firstname"), userResult.getString("lastname"), userResult.getString("email_address"),Integer.parseInt(userResult.getString("deleted"))));
+                    	//FIXME implement
+                    	//userMap.put(UUID.fromString(userResult.getString("user_guid")), new Customer(UUID.fromString(userResult.getString("user_guid")), Integer.parseInt(userResult.getString("userid")), userResult.getString("firstname"), userResult.getString("lastname"), userResult.getString("email_address"),Integer.parseInt(userResult.getString("deleted"))));
                     }
                 }
                 
                 if(bicycleResult!=null) {
                     while(bicycleResult.next()) {
-                    	bicycleMap.put(Integer.parseInt(bicycleResult.getString("bicycleid")), new Bicycle(Integer.parseInt(bicycleResult.getString("bicycleid")), Integer.parseInt(bicycleResult.getString("userid")), bicycleResult.getString("serial_nr")));
+                    	//FIXME implement
+                    	//bicycleMap.put(Integer.parseInt(bicycleResult.getString("bicycleid")), new Bicycle(Integer.parseInt(bicycleResult.getString("bicycleid")), Integer.parseInt(bicycleResult.getString("userid")), bicycleResult.getString("serial_nr")));
                     }
                 }
                 
@@ -167,6 +169,13 @@ public class DB_Action implements DataModel {
 	public boolean disconnectBicycle(int idBicycle) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+
+	@Override
+	public HashMap<Bicycle, Customer> getConnectedEntities() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

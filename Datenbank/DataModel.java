@@ -5,7 +5,7 @@ import java.util.UUID;
 public interface DataModel {
 	//Customer
 	//Create
-	public boolean createCustomer(int id, String firstName, String lastName, String eMail);
+	public boolean createCustomer(String firstName, String lastName, String eMail);
 	//Read
 	public Customer getCustomerByID(int id);
 	//Update

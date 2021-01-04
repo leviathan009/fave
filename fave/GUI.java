@@ -124,11 +124,12 @@ public class GUI {
 		listModel.clear();
 		ids.clear();
 		Customer c;
-		for(Integer id : dataModel.getAllCustomers().keySet()) {
+		//FIXME implement
+		/**for(Integer id : dataModel.getAllCustomers().keySet()) {
 			c = dataModel.getCustomerByID(id);
 			listModel.addElement(c.getFullName());
 			ids.add(c.getId());
-		}
+		}**/
 	}
 	
 	private class MyListSelectionListener implements ListSelectionListener{
@@ -179,7 +180,7 @@ public class GUI {
 		public void updateView() {
 			Customer c;
 			c = dataModel.getCustomerByID(ids.elementAt(list.getSelectedIndex()));
-			idLbl.setText("" + c.getId());
+			idLbl.setText("" + c.getUserID());
 			firstNameLbl.setText(c.getFirstName());
 			lastNameLbl.setText(c.getLastName());
 			mainFrame.pack();

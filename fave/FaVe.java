@@ -3,20 +3,29 @@ import javax.swing.SwingUtilities;
 
 import Datenbank.DB_Action;
 import Datenbank.DataModel;
+import tui.TUI;
 
 public class FaVe{
-
+	private static FaVe fave;
 	public static void main(String[] args) {
-		new FaVe().init();		
+		fave = new FaVe();
+		fave.init();		
 	}
 	
 	public void init() {
-		DataModel db = new DB_Action();
+		DataModel dm = new DB_Action();
+		//DataModel dm = new JSON_Action();
 		//Call from EDT
     	SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-		    	GUI gui = new GUI(db);
+		    	//GUI gui = new GUI(dm);
+		    	TUI tui = new TUI(dm, fave);
 			}
 		});
+	}
+	
+	public void exitProgram() {
+		System.out.println("Programm wird beendet.");
+		System.exit(0);
 	}
 }
