@@ -9,9 +9,9 @@ public interface DataModel {
 	//Read
 	public Customer getCustomerByID(UUID id);
 	//Update
-	public void updateCustomer(int id, String firstName, String lastName, String eMail);
+	public void updateCustomer(UUID id, String firstName, String lastName, String eMail, int deleted);
 	//Delete
-	public boolean deleteCustomer(int id);
+	public boolean deleteCustomer(UUID id);
 	
 	//Misc.
 	public HashMap<UUID, Customer> getAllCustomers();
@@ -21,18 +21,20 @@ public interface DataModel {
 	//Create
 	public boolean createBicycle(String serialNo);
 	//Read
-	public Bicycle getBicycleByID(int id);
+	public Bicycle getBicycleByID(UUID id);
 	//Update
-	public void updateBicyle(int id, String serialNumber, String description);
+	public void updateBicyle(UUID id, String serialNumber, int dleted);
 	//Delete
-	public boolean deleteBicycle(int id);
+	public boolean deleteBicycle(UUID id);
+	
+	public HashMap<UUID, Bicycle> getAllBicycles();
 	
 	public void loadData();
 	public void saveData();
 	
 	//Associations
-	public boolean connectBicycleWithCustomer(int idBicycle, int idUser);
-	public boolean disconnectBicycle(int idBicycle);
+	public boolean connectBicycleWithCustomer(UUID idBicycle, UUID idUser);
+	public boolean disconnectBicycle(UUID idBicycle);
 	public HashMap<Bicycle, Customer> getConnectedEntities();
 	
 }

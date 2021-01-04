@@ -6,13 +6,13 @@ public class Bicycle {
 	String serialNr, label;
 	UUID bicycleGuid;
 	
-	public Bicycle(int bicycleID, int deleted, String serialNr, UUID bicycleGuid, String labelArg) {
+	public Bicycle(UUID bicycleGuid, String serialNr, int deleted) {
 		super();
-		this.bicycleID = bicycleID;
+		
 		this.deleted = deleted;
 		this.serialNr = serialNr;
 		this.bicycleGuid = bicycleGuid;
-		this.label = labelArg;
+		
 	}
 	
 	

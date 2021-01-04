@@ -4,10 +4,10 @@ import java.util.*;
 public class UserBicycleAssignment {
 	private UUID userBicycleGuid, bicycleGuid, userGuid;
 	private int deleted=0;
-	private Date datum;
+	private String datum;
 	
 	
-	public UserBicycleAssignment(UUID userBicycleGuid, UUID bicycleGuid, UUID userGuid, int deleted, Date datum) {
+	public UserBicycleAssignment(UUID userBicycleGuid, UUID bicycleGuid, UUID userGuid, int deleted, String datum) {
 		super();
 		this.userBicycleGuid = userBicycleGuid;
 		this.bicycleGuid = bicycleGuid;
@@ -41,10 +41,10 @@ public class UserBicycleAssignment {
 	public void setDeleted(int deleted) {
 		this.deleted = deleted;
 	}
-	public Date getDatum() {
+	public String getDatum() {
 		return datum;
 	}
-	public void setDatum(Date datum) {
+	public void setDatum(String datum) {
 		this.datum = datum;
 	}
 	

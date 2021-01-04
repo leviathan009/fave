@@ -22,7 +22,7 @@ public class FaVe{
 		//Call from EDT
     	SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-		    	GUI gui = new GUI(dm);
+		    	//GUI gui = new GUI(dm);
 		    	//TUI tui = new TUI(dm, fave);
 			}
 		});

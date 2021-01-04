@@ -65,9 +65,9 @@ public class DB_Connection {
         ResultSet resultSet = null;
         
         try {
-            sqlStatement = dbConnection.createStatement();   
+            sqlStatement = dbConnection.createStatement();
             resultSet = sqlStatement.executeQuery(pSql);     
-            this.resultSet = resultSet;                      
+            this.resultSet = resultSet;                  
             System.out.println("Datenbank-Abfrage durchgeführt...");
         }
         catch(SQLException e){
