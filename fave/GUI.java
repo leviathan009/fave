@@ -9,6 +9,7 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.UUID;
 import java.util.Vector;
 
 import javax.swing.BoxLayout;
@@ -33,13 +34,13 @@ public class GUI {
 	private DefaultListModel<String> listModel;
 	private DataModel dataModel;
 	private DetailsPanel detailsPanel;
-	private Vector<Integer> ids;
+	private Vector<UUID> ids;
 	
 	public GUI(DataModel dm) {
 		dataModel = dm;
 		
 		//** Setup
-		ids = new Vector<Integer>();
+		ids = new Vector<UUID>();
 		
 		//** North
 		JPanel northPanel = new JPanel(new GridBagLayout());
@@ -125,11 +126,11 @@ public class GUI {
 		ids.clear();
 		Customer c;
 		//FIXME implement
-		/**for(Integer id : dataModel.getAllCustomers().keySet()) {
+		for(UUID id : dataModel.getAllCustomers().keySet()) {
 			c = dataModel.getCustomerByID(id);
 			listModel.addElement(c.getFullName());
-			ids.add(c.getId());
-		}**/
+			ids.add(c.getUserID());
+		}
 	}
 	
 	private class MyListSelectionListener implements ListSelectionListener{

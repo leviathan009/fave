@@ -12,11 +12,12 @@ public class DB_Action implements DataModel {
 	HashMap<UUID, Bicycle> bicycleMap = new HashMap<UUID, Bicycle>();
 	HashMap<Integer, Customer> userBicycleMap = new HashMap<Integer, Customer>();
 
-	DB_Connection db_connection = new DB_Connection("192.168.1.57", "oszimt", "oszimt", "oszimt");
+	DB_Connection db_connection = new DB_Connection("localhost", "oszimt", "oszimt", "oszimt");
 
 	
 	public  DB_Action () {
 		loadData();
+		//System.out.println(userMap);
 	}
 	
 
@@ -29,7 +30,7 @@ public class DB_Action implements DataModel {
 	}
 
 	@Override
-	public Customer getCustomerByID(int id) {
+	public Customer getCustomerByID(UUID id) {
 		return userMap.get(id);
 	}
 
@@ -96,8 +97,6 @@ public class DB_Action implements DataModel {
 		
 		// TODO Mock Data
 		Customer user_arr;
-
-		
 		
 		ResultSet userResult;
 		ResultSet bicycleResult;
@@ -114,7 +113,7 @@ public class DB_Action implements DataModel {
                 if(userResult!=null) {
                     while(userResult.next()) {
                     	//FIXME implement
-                    	//userMap.put(UUID.fromString(userResult.getString("user_guid")), new Customer(UUID.fromString(userResult.getString("user_guid")), Integer.parseInt(userResult.getString("userid")), userResult.getString("firstname"), userResult.getString("lastname"), userResult.getString("email_address"),Integer.parseInt(userResult.getString("deleted"))));
+                    	userMap.put(UUID.fromString(userResult.getString("user_guid")), new Customer(UUID.fromString(userResult.getString("user_guid")), userResult.getString("firstname"), userResult.getString("lastname"), userResult.getString("email_address"),Integer.parseInt(userResult.getString("deleted"))));
                     }
                 }
                 

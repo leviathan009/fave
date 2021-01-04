@@ -7,7 +7,7 @@ public interface DataModel {
 	//Create
 	public boolean createCustomer(String firstName, String lastName, String eMail);
 	//Read
-	public Customer getCustomerByID(int id);
+	public Customer getCustomerByID(UUID id);
 	//Update
 	public void updateCustomer(int id, String firstName, String lastName, String eMail);
 	//Delete

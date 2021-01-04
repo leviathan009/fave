@@ -1,4 +1,6 @@
 package fave;
+import java.util.UUID;
+
 import javax.swing.SwingUtilities;
 
 import Datenbank.DB_Action;
@@ -9,6 +11,8 @@ public class FaVe{
 	private static FaVe fave;
 	public static void main(String[] args) {
 		fave = new FaVe();
+		UUID userGuid = UUID.randomUUID();
+		System.out.println(userGuid);
 		fave.init();		
 	}
 	
@@ -18,8 +22,8 @@ public class FaVe{
 		//Call from EDT
     	SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-		    	//GUI gui = new GUI(dm);
-		    	TUI tui = new TUI(dm, fave);
+		    	GUI gui = new GUI(dm);
+		    	//TUI tui = new TUI(dm, fave);
 			}
 		});
 	}
